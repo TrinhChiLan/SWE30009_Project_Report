@@ -23,7 +23,7 @@ def test_mr1_permutation(source_input):
     shuffled_out = run_quicksort(shuffled)
     print("Source input:", source_input, "Follow-up Input:", shuffled)
     print("Source output:", source_out, "Follow-up Output:", shuffled_out)
-    assert sorted(shuffled_out) == sorted(source_out)
+    assert shuffled_out == source_out
 
 def test_mr2_affine_transformation(source_input):
     source_out = run_quicksort(source_input)
