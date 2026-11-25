@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+
+# pytest
+.pytest_cache/
+
+# coverage
+.coverage
+.coverage.*
+htmlcov/
+
+# mutmut (work dir, mutants and cache)
+mutants/
+.mutmut-cache/
+
+# per-MTG mutation runs (generated)
+mtg_mutation_results/

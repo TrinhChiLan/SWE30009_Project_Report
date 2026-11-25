@@ -1,0 +1,14 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_Test.py"]
+pythonpath = [".", "src"]
+consider_namespace_packages = true
+addopts = ["-ra"]
+console_output_style = "count"
+
+[tool.mutmut]
+source_paths = ["src"]
+#selecting which test to run, leave at ["test"] to run the full suite
+pytest_add_cli_args_test_selection = ["tests/test_mtg_2.py"]
+only_mutate = ["src/Quick_Sort.py"]
+on_dependency_change = "rerun"
