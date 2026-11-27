@@ -8,7 +8,13 @@ console_output_style = "count"
 
 [tool.mutmut]
 source_paths = ["src"]
-#selecting which test to run, leave at ["test"] to run the full suite
-pytest_add_cli_args_test_selection = ["tests/test_mtg_2.py"]
+# Run against src/Quick_Sort.py only. Tests run from a copy in mutants/.
 only_mutate = ["src/Quick_Sort.py"]
+# There is no CLI flag for choosing the tests in mutmut 3; it is read from here.
+# Mutating one MTG at a time means changing this line, because mutmut's cache
+# reuses the previous selection if you leave it alone. Run all five with:
+#   ["tests"]
+# or just one:
+#   ["tests/test_mtg_2.py::test_mtg_2"]
+pytest_add_cli_args_test_selection = ["tests"]
 on_dependency_change = "rerun"
