@@ -173,7 +173,7 @@ The six mutants killed by every MR *except* MR2 are all **ordering or indexing**
 | `x_quickSort__mutmut_26` | `pi+1` → `pi+2` | Skips an element |
 
 `2v+3` is an order-preserving bijection. It changes the **values** but preserves
-**relative order, length, and equality** — exactly the properties sorting depends on.
+**relative order, length, and equality**, which are the properties sorting depends on.
 The algorithm therefore executes the *identical* control flow on `x` and `x'`, so a
 reproducible bug appears on both sides of the relation and cancels:
 
@@ -190,32 +190,6 @@ inverted order, MR4 multiplicity, MR5 bounds — which is why they catch all six
 
 **Takeaway:** MR2 adds little detection power beyond MR1 for a comparison sort. It
 varies the least disruptive dimension.
-
-### Relation to a direct oracle
-
-QuickSort has a cheap oracle (`sorted()`), which would kill 44/46 too. The MRs are
-not justified by superior fault detection; they mirror the oracle's kill rate while
-using no oracle, and would remain the only available check for a program where
-`sorted()` does not exist.
-
----
-
-## Alternative mutation workflow
-
-`pyproject.toml` holds a **single** selection, so mutating each MTG separately means
-editing it between runs and clearing `mutants/` each time (see the cache note above).
-
-If you want arbitrary per-MTG runs without touching `pyproject.toml`, use
-**`pytest`'s `-k` / node-id selection with a fresh tree per run**:
-
-```bash
-for n in 1 2 3 4 5; do
-  rm -rf mutants
-  # edit pyproject.toml -> ["tests/test_mtg_$n.py::test_mtg_$n"]
-  mutmut run
-  mutmut results
-done
-```
 
 ---
 
